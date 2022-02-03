@@ -1,8 +1,6 @@
 """
 Shipping data processor for BrickLink API.
 """
-import csv
-
 from bricklink_api.auth import oauth
 from bricklink_api.order import get_orders, get_order
 
@@ -10,22 +8,8 @@ import constants
 
 
 def write_shipping_csv():
-    # Set up CSV file formatting
-    # PirateShip required field names
-    fields = [
-        "Name",
-        "Address",
-        "Address Line 2",
-        "City",
-        "State",
-        "Zipcode",
-        "Country",
-        "Ounces",
-    ]
     # Array for shipping data
     rows = []
-    # name of csv file
-    filename = "shipping_info.csv"
 
     # Use BrickBytes API to generate authentication
     consumer_key = constants.consumer_key
@@ -38,12 +22,16 @@ def write_shipping_csv():
     api_result = get_orders(status="PACKED", auth=auth)
     orders = api_result.get("data")
 
-    # For each order call the BrickLink API again to retrieve its associated shipping info, then write it to CSV
+    # For each order call the BrickLink API again to retrieve its associated shipping info
     for order in orders:
         order_id = order.get("order_id")
         order_shipping_data = get_order(order_id=order_id, auth=auth)
         formatted_shipping_data = [
-            order.get("buyer_name"),
+            order_shipping_data.get("data")
+            .get("shipping")
+            .get("address")
+            .get("name")
+            .get("full"),
             order_shipping_data.get("data")
             .get("shipping")
             .get("address")
@@ -62,18 +50,14 @@ def write_shipping_csv():
             .get("shipping")
             .get("address")
             .get("country_code"),
-            float(order_shipping_data.get("data").get("total_weight"))
-            * 0.035274,  # Convert from oz to g
+            round(
+                float(order_shipping_data.get("data").get("total_weight")) * 0.035274
+                + 0.75,
+                2,
+            ),  # Convert from oz to g, add 0.75 oz for packaging
+            10.0,
+            6.0,
+            1.0,
         ]
         rows.append(formatted_shipping_data)
-
-    # Write shipping data to csv file
-    with open(filename, "w") as csvfile:
-        # creating a csv writer object
-        csvwriter = csv.writer(csvfile)
-
-        # writing the fields
-        csvwriter.writerow(fields)
-
-        # writing the data rows
-        csvwriter.writerows(rows)
+    return rows
