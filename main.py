@@ -1,0 +1,11 @@
+"""
+Main function and comand line starter.
+"""
+
+
+def main():
+   return 0
+
+
+if __name__ == '__main__':
+    main()
