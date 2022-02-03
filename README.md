@@ -3,7 +3,8 @@
 Simple program for writing shipping information from BrickLink and BrickOwl orders to a CSV file for PirateShip.
 
 ### Installation
-Make sure to install all required Python packages if working with this source code by running:
+Make sure you have Python 3, Git, and PIP installed on your machine, and install all required Python packages by running the 
+following PIP command in the directory where you downloaded this program:
 
 `pip install -r requirements.txt`
 
