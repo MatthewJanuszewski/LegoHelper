@@ -1,5 +1,8 @@
 # LegoHelper
 
+Simple program for writing shipping information from BrickLink and BrickOwl orders to a CSV file for PirateShip.
+
+### Installation
 Make sure to install all required Python packages if working with this source code by running:
 
 `pip install -r requirements.txt`
