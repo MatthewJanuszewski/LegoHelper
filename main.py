@@ -1,11 +1,13 @@
 """
-Main function and comand line starter.
+Main function and command line starter.
 """
+import src.BrickLinkShipping as BrickLinkShipping
 
 
 def main():
-   return 0
+    BrickLinkShipping.write_shipping_csv()
+    return 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
