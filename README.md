@@ -23,7 +23,7 @@ Find your token values by following the directions at `https://www.bricklink.com
 
 For your BrickOwl Key go to `https://www.brickowl.com/api_docs` to find your key and add the following constant to `constants.py`
 
-`brick_owl_key = "YOUR_BRICK_OWL_KEY`
+`brick_owl_key = "YOUR_BRICK_OWL_KEY"`
 
 These values need to set up for each individual BrickLink/BrickOwl account and allow full access to your account, so do not share them 
 or check them into any public repository.
