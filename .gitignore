@@ -1,6 +1,6 @@
 # Ignore constants.py to keep API tokens secure
 constants.py
-shipping_info.csv
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

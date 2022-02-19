@@ -5,7 +5,7 @@ import requests
 import constants
 
 
-def write_shipping_info():
+def write_shipping_info(shipping_weight):
     # Array for shipping data
     rows = []
 
@@ -38,7 +38,7 @@ def write_shipping_info():
             response.get("ship_post_code"),
             response.get("ship_country"),
             round(
-                float(response.get("weight")) * 0.035274 + 0.75,
+                float(response.get("weight")) * 0.035274 + shipping_weight,
                 2,
             ),
             10.0,

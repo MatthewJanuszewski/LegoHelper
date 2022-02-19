@@ -2,14 +2,22 @@
 Main function and command line starter.
 """
 import csv
+from datetime import date
 
 import src.BrickLinkShipping as BrickLinkShipping
 import src.BrickOwlShipping as BrickLOwlShipping
 
 
 def main():
+    # Get current date
+    today = date.today()
+    date_string = today.strftime("%m_%d_%y")
+
+    # Query for packaging weight
+    shipping_weight = input("Input shipping material weight in ounces: ")
+
     # Set up formatting for CSV file
-    filename = "shipping_info.csv"
+    filename = "shipping_info_" + date_string + ".csv"
     fields = [
         "Full Name",
         "Address 1",
@@ -25,8 +33,8 @@ def main():
     ]
 
     # Call functions to query APIs
-    brick_link_shipping = BrickLinkShipping.write_shipping_csv()
-    brick_owl_shipping = BrickLOwlShipping.write_shipping_info()
+    brick_link_shipping = BrickLinkShipping.write_shipping_csv(shipping_weight)
+    brick_owl_shipping = BrickLOwlShipping.write_shipping_info(shipping_weight)
 
     # Combine shipping data from both APIs
     shipping_data = brick_link_shipping + brick_owl_shipping
