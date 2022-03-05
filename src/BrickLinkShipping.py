@@ -52,7 +52,7 @@ def write_shipping_csv(shipping_weight):
             .get("country_code"),
             round(
                 float(order_shipping_data.get("data").get("total_weight")) * 0.035274
-                + shipping_weight,
+                + float(shipping_weight),
                 2,
             ),  # Convert from oz to g, add 0.75 oz for packaging
             10.0,
