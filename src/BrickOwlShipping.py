@@ -38,7 +38,7 @@ def write_shipping_info(shipping_weight):
             response.get("ship_post_code"),
             response.get("ship_country"),
             round(
-                float(response.get("weight")) * 0.035274 + shipping_weight,
+                float(response.get("weight")) * 0.035274 + float(shipping_weight),
                 2,
             ),
             10.0,
